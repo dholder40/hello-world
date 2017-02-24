@@ -4,6 +4,15 @@
  * and open the template in the editor.
  */
 
+
+/*  LEARNED in DOC --- 
+ *   NEVER use document.write in a script after the page is loaded...
+ *   it will clear the html page...  see...
+ *   
+ *   https://www.w3schools.com/js/js_htmldom_html.asp
+ *   
+ *   
+ */
 // Define quarter here.
 var quarter = function (number) {
     return number / 4;

@@ -4,13 +4,25 @@
  * and open the template in the editor.
  */
 
-var nLimit = 69;
-var bufNumbers = [];
-var number, loopCtr, goodnumber = 0;
+/*  LEARNED in DOC --- 
+ *   NEVER use document.write in a script after the page is loaded...
+ *   it will clear the html page...  see...
+ *   
+ *   https://www.w3schools.com/js/js_htmldom_html.asp
+ *   
+ *   
+ */
 
-var done = false;
-
-while (!done)
+function RandBuffer (bufLength, nLimit)
+{
+    // generate an array of random numbers between 1 and bufLimit.
+    // no doubles allowed, and sorted ascending
+    //var nLimit = 69;
+    var bufNumbers = [];
+    var number, goodnumber = 0;
+    var done = false;
+    
+    while (!done)
     {
         // Grab a random number
         number = Math.floor(Math.random() * nLimit + 1);
@@ -22,7 +34,7 @@ while (!done)
             // it's not, so push it.
             bufNumbers.push(number);
             goodnumber++;
-            if (goodnumber === 5)   // looks like we're done.
+            if (goodnumber === bufLength)   // looks like we're done.
             {
                 done = true;
             }
@@ -32,37 +44,28 @@ while (!done)
             console.log("Duplicate found");
         }
     }
-
-// Sort em and put em out
-console.log("Ready to sort");
-bufNumbers.sort(function(a, b){return a - b;}); 
-
-// document.write("Numbers: ");
-// document.write("<p>  </p>");
-
-for (var n = 0; n < 5; n++)
-    {
-        console.log("number  " + bufNumbers[n] + "\n");
-        document.write(bufNumbers[n] + "    ");
- 
-    }
-
-document.write("<p>  </p>");
-
-// don't forget the magic pball number...
-var PB = Math.floor(Math.random() * 26 + 1);
-console.log("PB " + PB + "\n");
-document.write(" PB = " + PB);
-document.write("<p>  </p>");
-
-var points = [40, 100, 1, 5, 25, 10];
-document.getElementById("demo").innerHTML = points + " PB " + PB ;
-
-function myFunction1() {
-    points.sort();
-    document.getElementById("demo").innerHTML = points;
+    // Sort em
+    console.log("Ready to sort");
+    bufNumbers.sort(function(a, b){return a - b;}); 
+    
+    return bufNumbers;
 }
-function myFunction2() {
-    points.sort(function(a, b){return a - b});
-    document.getElementById("demo").innerHTML = points;
+
+
+function PBGenerator() {
+    var PBBuff = [];
+    PBBuff = RandBuffer(5,69);
+    // don't forget the magic pball number...
+    var PB = Math.floor(Math.random() * 26 + 1);
+    console.log("PB " + PB + "\n");
+    document.getElementById("PB").innerHTML = PBBuff + " PB " + PB ;
+}
+
+function MMGenerator() {
+    var MMBuff = [];
+    MMBuff = RandBuffer(5,75);
+     // don't forget the magic megamil number...
+    var MM = Math.floor(Math.random() * 15 + 1);
+    console.log("MM " + MM + "\n");
+    document.getElementById("MM").innerHTML = MMBuff + " MM " + MM ;
 }
